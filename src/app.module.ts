@@ -20,7 +20,7 @@ import { UserModule } from './user/user.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        const mongoConfig = configService.get('mongouri');
+        const mongoConfig = configService.get<string>('mongouri');
 
         return {
           uri: mongoConfig,

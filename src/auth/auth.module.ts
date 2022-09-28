@@ -1,6 +1,5 @@
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { jwtConstants } from './jwt.constants';
 import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from './strategies/local.strategy';
 import { UserModule } from './../user/user.module';
@@ -17,7 +16,7 @@ import { PassportModule } from '@nestjs/passport';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        secret: configService.get('jwtsecret'),
+        secret: process.env.JWT_SECRET,
         signOptions: {
           expiresIn: configService.get('expires'),
         },

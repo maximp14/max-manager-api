@@ -9,16 +9,16 @@ export class UserController {
 
   @Post()
   async createUser(@Body() userDto: UserDto): Promise<IUser> {
-    return this.userService.createUser(userDto);
+    return await this.userService.createUser(userDto);
   }
 
   @Get()
   async getUsers(): Promise<IUser[]> {
-    return null;
+    return await this.userService.getUsers();
   }
 
   @Get()
   async getUserByName(username: string): Promise<IUser> {
-    return null;
+    return await this.userService.getUserByName(username);
   }
 }

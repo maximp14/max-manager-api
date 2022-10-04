@@ -4,14 +4,14 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import jwtConfig from './config/jwt.config';
+import config from './config';
 import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [jwtConfig],
+      load: config,
       envFilePath: ['.env'],
     }),
     AuthModule,
@@ -20,10 +20,9 @@ import { UserModule } from './user/user.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        const mongoConfig = process.env.MONGO_URI;
-
+        const mongoConfig = configService.get('mongodb');
         return {
-          uri: mongoConfig,
+          uri: mongoConfig.mongouri,
         };
       },
     }),

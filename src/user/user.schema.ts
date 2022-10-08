@@ -6,7 +6,7 @@ class User {
   @Prop({ required: true })
   userName: string;
 
-  @Prop({ minlength: 4, maxlength: 10, required: true })
+  @Prop({ required: true })
   password: string;
 
   @Prop()

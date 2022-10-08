@@ -8,7 +8,7 @@ import {
 
 export class UserDto {
   @MaxLength(20)
-  @IsNotEmpty({ message: 'El Campos username es requerido' })
+  @IsNotEmpty({ message: 'username is required' })
   @IsString()
   userName: string;
 
